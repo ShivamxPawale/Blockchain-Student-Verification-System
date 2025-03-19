@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgb(252, 244, 137);
+            padding: 20px;
+            border-radius: 10px;
+            border: 5px solid #ddd;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 450px;
+        }
+        h2 {
+            color: #333;
+            font-size: 30px;
+            font-weight: 800;
+        }
+        .nav-links {
+            margin-top: 20px;
+        }
+        .logout_btn{
+            background:rgb(102, 16, 16);
+            display: block;
+            text-decoration: none;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+       
+        .register_btn{
+            display: block;
+            text-decoration: none;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            background:rgb(15, 71, 131);
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .upd_meet_btn{
+            display: block;
+            text-decoration: none;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            background:rgb(15, 71, 131);
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .register_btn:hover {
+            background: #0056b3;
+        }
+        .logout_btn:hover{
+            background:rgb(138, 32, 32);
+        }
+        .upd_meet_btn:hover {
+            background: #0056b3;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, Admin</h2>
+        <div class="nav-links">
+            <a href="/register_student" class="register_btn">Register a Student</a>
+            <a href="/update_meeting_link" class="upd_meet_btn">Update Meeting Link</a>
+            <a href="/logout"  class="logout_btn">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

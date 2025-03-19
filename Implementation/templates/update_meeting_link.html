@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Meeting Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgb(255, 250, 179);
+            padding: 25px;
+            border-radius: 10px;
+            border: 5px solid #ddd;
+            box-shadow: 10px 8px 20px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 34px;
+            font-weight: 1000;
+            font-family: 'Times New Roman', serif;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-weight: bold;
+            margin: 10px 0 5px;
+            display: block;
+            text-align: left;
+            width: 100%;
+        }
+        input {
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-weight:600;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Meeting Link</h2>
+        <form method="POST" action="{{ url_for('update_meeting_link') }}">
+            <label for="meeting_link">Enter New Meeting Link:</label>
+            <input type="text" name="meeting_link" id="meeting_link" placeholder="Paste Your Meeting Link Here" required>
+            <button type="submit">Update Link</button>
+        </form>
+    </div>
+</body>
+</html>

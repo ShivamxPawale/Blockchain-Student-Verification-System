@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Verification System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgb(252, 244, 137);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            border: 5px solid #ddd;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            align-items: center;
+            width: 450px;
+        }
+        h2 {
+            color: #333;
+            width: 100%;
+            font-size: 30px;
+            font-weight: 800;
+            font-family: 'Times New Roman', serif;
+        }
+        .nav-links {
+            margin-top: 20px;
+        }
+        .register_btn{
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            width: 350px;
+            text-align: center;
+            text-decoration: none;
+            background:rgb(33, 35, 136);
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .login_btn{
+            display: flex;
+            justify-content: center;
+            width: 350px;
+            gap: 20px;
+            text-align: center;
+            text-decoration: none;
+            background:rgb(127, 33, 136);
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .verify_btn{
+            display: flex;
+            justify-content: center;
+            width: 350px;
+            gap: 30px;
+            text-align: center;
+            text-decoration: none;
+            background: #218838;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .register_btn:hover {
+            background: rgb(53, 55, 216);
+        }
+        .login_btn:hover {
+            background: rgb(165, 40, 177);
+        }
+        .verify_btn:hover {
+            background: rgb(36, 163, 63);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to Student Verification System!!</h2>
+        <div class="nav-links">
+            <a href="/register_admin" class="register_btn">Register as Admin</a>
+            <a href="/login_admin"  class="login_btn">Admin Login</a>
+            <a href="/verify_student"  class="verify_btn">Verify as Student</a>
+        </div>
+    </div>
+</body>
+</html>
