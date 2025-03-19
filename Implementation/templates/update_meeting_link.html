@@ -75,7 +75,17 @@
         <form method="POST" action="{{ url_for('update_meeting_link') }}">
             <label for="meeting_link">Enter New Meeting Link:</label>
             <input type="text" name="meeting_link" id="meeting_link" placeholder="Paste Your Meeting Link Here" required>
-            <button type="submit">Update Link</button>
+            <button type="submit">Update Link</button><br>
+            <a href="{{ url_for('dashboard') }}" style="text-decoration: none; color: #333; font-weight: 700;">Back to Dashboard</a>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div style="color: red; font-weight: 700; text-align: center;">
+                    {% for category, message in messages %}
+                        <p class="{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         </form>
     </div>
 </body>

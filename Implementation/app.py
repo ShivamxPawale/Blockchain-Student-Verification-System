@@ -136,7 +136,8 @@ def register_admin():
         admin = Admin(name=name, institute_code=institute_code, password=password)
         db.session.add(admin)
         db.session.commit()
-        return redirect(url_for('index'))
+        flash('Admin registered successfully!', 'success')
+      
     
     return render_template('register_admin.html')
 
@@ -164,19 +165,28 @@ def dashboard():
 # Update Meeting Link
 @app.route('/update_meeting_link', methods=['GET', 'POST'])
 def update_meeting_link():
-    admin = Admin.query.first()  # Fetch the first admin (Modify based on your logic)
+    if 'admin_id' not in session:
+        flash("Unauthorized access! Please log in.", "danger")
+        return redirect(url_for('login_admin'))
 
     if request.method == 'POST':
-        if 'meeting_link' not in request.form:
-            flash("Meeting link is missing in the form!", "danger")
+        new_meeting_link = request.form.get('meeting_link')
+        if not new_meeting_link:
+            flash("Meeting link is required!", "danger")
             return redirect(url_for('update_meeting_link'))
 
-        admin.meeting_link = request.form['meeting_link']
+        # Update meeting link for all admins
+        Admin.query.update({Admin.meeting_link: new_meeting_link})
         db.session.commit()
-        flash("Meeting link updated successfully!", "success")
-        return redirect(url_for('dashboard'))  # Redirect to admin dashboard
+
+        flash("Meeting link updated successfully for all admins!", "success")
+      # Redirect to admin dashboard
+
+    # Fetch any admin (since the meeting link is the same for all)
+    admin = Admin.query.first()
 
     return render_template('update_meeting_link.html', admin=admin)
+
 
 # Register Student
 from flask import render_template, request, redirect, url_for, session, flash
@@ -229,6 +239,16 @@ def verify_student():
                 return redirect(admin.meeting_link) if admin else 'No meeting link found'
         flash('Invalid student details!', 'danger')
     return render_template('verify_student.html')
+
+#View Students
+@app.route('/students')
+def students():
+    if 'admin_id' not in session:
+        flash("Unauthorized access! Please log in.", "danger")
+        return redirect(url_for('login_admin'))
+
+    all_students = Student.query.all()  # Fetch all student records
+    return jsonify([{"id": s.id, "name": s.name, "institute_code": s.institute_code, "uhi": s.uhi} for s in all_students])
 
 # Logout
 @app.route('/logout')

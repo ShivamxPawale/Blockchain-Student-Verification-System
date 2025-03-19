@@ -13,6 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
         }
         .container {
@@ -22,7 +23,7 @@
             border: 5px solid #ddd;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 450px;
+            width: fit-content;
         }
         h2 {
             color: #333;
@@ -32,8 +33,7 @@
         .nav-links {
             margin-top: 20px;
         }
-        .logout_btn{
-            background:rgb(102, 16, 16);
+        .logout_btn, .register_btn, .upd_meet_btn, .view_students_btn {
             display: block;
             text-decoration: none;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
@@ -43,40 +43,36 @@
             border-radius: 5px;
             font-weight: bold;
             transition: 0.3s;
+            text-align: center;
         }
-       
-        .register_btn{
-            display: block;
-            text-decoration: none;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-            background:rgb(15, 71, 131);
-            color: white;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
+        .register_btn, .upd_meet_btn, .view_students_btn {
+            background: rgb(15, 71, 131);
         }
-        .upd_meet_btn{
-            display: block;
-            text-decoration: none;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-            background:rgb(15, 71, 131);
-            color: white;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
+        .logout_btn {
+            background: rgb(102, 16, 16);
         }
-        .register_btn:hover {
+        .view_students_btn:hover, .register_btn:hover, .upd_meet_btn:hover {
             background: #0056b3;
         }
-        .logout_btn:hover{
-            background:rgb(138, 32, 32);
+        .logout_btn:hover {
+            background: rgb(138, 32, 32);
         }
-        .upd_meet_btn:hover {
-            background: #0056b3;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
         }
        
     </style>
@@ -87,8 +83,52 @@
         <div class="nav-links">
             <a href="/register_student" class="register_btn">Register a Student</a>
             <a href="/update_meeting_link" class="upd_meet_btn">Update Meeting Link</a>
+            <a href="#" class="view_students_btn" onclick="fetchStudents()">View Registered Students</a>
             <a href="/logout"  class="logout_btn">Logout</a>
         </div>
+        <table id="studentsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Institute Code</th>
+                    <th>UHI</th>
+                </tr>
+            </thead>
+            <tbody id="studentsBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function fetchStudents() {
+            fetch('/students')
+                .then(response => response.json())
+                .then(data => {
+                    let studentsBody = document.getElementById("studentsBody");
+                    studentsBody.innerHTML = ""; // Clear previous data
+        
+                    if (data.length === 0) {
+                        // If no records found, display a message
+                        studentsBody.innerHTML = `<tr><td colspan="4" style="text-align: center; font-weight: bold; color: red;">No student record!</td></tr>`;
+                    } else {
+                        // Populate table with student data
+                        data.forEach(student => {
+                            let row = `<tr>
+                                <td>${student.id}</td>
+                                <td>${student.name}</td>
+                                <td>${student.institute_code}</td>
+                                <td>${student.uhi}</td>
+                            </tr>`;
+                            studentsBody.innerHTML += row;
+                        });
+                    }
+                    
+                    document.getElementById("studentsTable").style.display = "table"; // Show table
+                })
+                .catch(error => console.error("Error fetching students:", error));
+        }
+        
+    </script>
     </div>
 </body>
 </html>

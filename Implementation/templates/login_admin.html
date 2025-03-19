@@ -73,6 +73,8 @@
     </style>
 </head>
 <body>
+
+
     <div class="container">
         <h2>Admin Login</h2>
         <form action="/login_admin" method="POST">
@@ -84,6 +86,15 @@
 
             <button type="submit">Login</button>
             <p>Don't have an account? <a href="/register_admin" style="text-decoration: none"><b >Register</b></a></p>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div style="color: red; font-weight: 700; text-align: center;">
+                    {% for category, message in messages %}
+                        <p class="{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         </form>
     </div>
 </body>
