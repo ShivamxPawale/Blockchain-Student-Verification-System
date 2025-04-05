@@ -3,5 +3,5 @@ This project is a Flask-based web application that uses blockchain technology to
 
 🔹 Key Features:
 Admin Registration & Login – Admins can register and manage student authentication.
-Student Registration – Students are registered with a Unique Hash Identifier (UHI) stored on both SQL database & Blockchain.
-Blockchain Verification – When a student tries to join a meeting, their
+Student Registration – Students are registered with a Unique Hash Identifier (UHI) stored on both SQL database & Blockchain and sent to student on their respective e-mail.
+Blockchain Verification – When a student tries to join a meeting, their authenticity is verified using UHI and student name.
